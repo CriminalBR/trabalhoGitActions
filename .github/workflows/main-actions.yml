@@ -1,0 +1,56 @@
+name: Showcase de Ações no Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  show-basic-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1. Hello World
+        run: echo "Hello, World! O workflow começou."
+      - name: 2. Mostra Data e Hora do Push
+        run: echo "O push foi feito às $(date)"
+      - name: 3. Mostra Usuário do Push
+        run: echo "Push feito por: ${{ github.actor }}"
+      - name: 4. Calcular 2+2 com variável
+        run: |
+          RESULTADO=$((2+2))
+          echo "O resultado de 2+2 é $RESULTADO"
+
+  file-operations:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+      - name: 1. Listar todos os arquivos do repositório
+        run: ls -R
+      - name: 2. Contar quantos arquivos HTML existem
+        run: |
+          COUNT=$(find . -type f -name "*.html" | wc -l)
+          echo "Existem $COUNT arquivos HTML no projeto."
+      - name: 3. Criar um arquivo de texto com informações
+        run: |
+          echo "Este arquivo foi gerado automaticamente pelo GitHub Actions." > log.txt
+          echo "Usuário do commit: ${{ github.actor }}" >> log.txt
+          echo "Data: $(date)" >> log.txt
+      - name: 4. Alertar se algum arquivo for maior que 100kb
+        run: |
+          find . -type f -size +100k -exec echo "ALERTA: O arquivo {} é maior que 100kb!" \;
+
+  sequential-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Gerar relatório - Data
+        run: echo "Relatório sequencial - Data: $(date)"
+      - name: Gerar relatório - Usuário
+        run: echo "Relatório sequencial - Usuário: ${{ github.actor }}"
+      - name: Gerar relatório - Contagem de arquivos
+        run: |
+          HTML_COUNT=$(find . -type f -name "*.html" | wc -l)
+          CSS_COUNT=$(find . -type f -name "*.css" | wc -l)
+          JS_COUNT=$(find . -type f -name "*.js" | wc -l)
+          echo "HTML: $HTML_COUNT, CSS: $CSS_COUNT, JS: $JS_COUNT"
