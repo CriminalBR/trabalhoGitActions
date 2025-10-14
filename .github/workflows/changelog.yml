@@ -9,6 +9,11 @@ jobs:
   update-readme:
     runs-on: ubuntu-latest
 
+    # PERMISSÃO ADICIONADA AQUI!
+    # Sem isso, a action não consegue fazer o commit de volta.
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
