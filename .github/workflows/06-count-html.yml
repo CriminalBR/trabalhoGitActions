@@ -1,0 +1,13 @@
+name: 06 - Contar Arquivos HTML
+on: push
+jobs:
+  count-html:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+      - name: Contar quantos arquivos HTML existem
+        run: |
+          COUNT=$(find . -type f -name "*.html" | wc -l)
+          echo "Existem $COUNT arquivos HTML no projeto."
+          

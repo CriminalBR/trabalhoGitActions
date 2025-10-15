@@ -1,0 +1,11 @@
+name: 08 - Agendado para a Noite
+on:
+  schedule:
+    # Roda todo dia às 3h da manhã (UTC)
+    - cron: '0 3 * * *'
+jobs:
+  nightly-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Tarefa da madrugada
+        run: echo "Esta tarefa está rodando de madrugada, conforme agendado."

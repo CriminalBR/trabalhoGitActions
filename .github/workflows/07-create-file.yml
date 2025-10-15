@@ -1,0 +1,13 @@
+name: 07 - Criar e Preencher Arquivo
+on: push
+jobs:
+  create-file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Criar um arquivo de texto com informações
+        run: |
+          echo "Este arquivo foi gerado automaticamente." > log_gerado.txt
+          echo "Usuário do commit: ${{ github.actor }}" >> log_gerado.txt
+          echo "Data: $(date)" >> log_gerado.txt
+          echo "Conteúdo do arquivo:"
+          cat log_gerado.txt

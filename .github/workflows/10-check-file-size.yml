@@ -1,0 +1,11 @@
+name: 10 - Alerta de Arquivo Grande
+on: push
+jobs:
+  check-size:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+      - name: Alertar se algum arquivo for maior que 100kb
+        run: |
+          find . -type f -size +100k -exec echo "ALERTA: O arquivo {} é maior que 100kb!" \;

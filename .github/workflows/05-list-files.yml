@@ -1,0 +1,11 @@
+name: 05 - Listar Arquivos
+on: push
+jobs:
+  list-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+      - name: Listar todos os arquivos do repositório
+        run: ls -R
+        

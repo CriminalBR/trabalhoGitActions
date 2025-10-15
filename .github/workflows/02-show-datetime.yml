@@ -1,0 +1,8 @@
+name: 02 - Mostra Data e Hora
+on: push
+jobs:
+  show-date:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mostra Data e Hora do Push
+        run: echo "O push foi feito às $(date)"

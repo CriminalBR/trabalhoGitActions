@@ -1,0 +1,17 @@
+name: 11 - Relatório Sequencial
+on: push
+jobs:
+  sequential-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Etapa 1 - Data
+        run: echo "Relatório sequencial - Data: $(date)"
+      - name: Etapa 2 - Usuário
+        run: echo "Relatório sequencial - Usuário: ${{ github.actor }}"
+      - name: Etapa 3 - Contagem de arquivos
+        run: |
+          HTML_COUNT=$(find . -type f -name "*.html" | wc -l)
+          CSS_COUNT=$(find . -type f -name "*.css" | wc -l)
+          JS_COUNT=$(find . -type f -name "*.js" | wc -l)
+          echo "HTML: $HTML_COUNT, CSS: $CSS_COUNT, JS: $JS_COUNT"

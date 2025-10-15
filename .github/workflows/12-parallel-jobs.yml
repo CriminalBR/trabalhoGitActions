@@ -1,0 +1,24 @@
+name: 12 - Relatório Paralelo (não sequencial)
+on: push
+jobs:
+  # Cada 'job' roda em paralelo, ao mesmo tempo
+  get-date:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Gerar relatório - Data
+        run: echo "Relatório paralelo - Data: $(date)"
+  get-user:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Gerar relatório - Usuário
+        run: echo "Relatório paralelo - Usuário: ${{ github.actor }}"
+  get-count:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Gerar relatório - Contagem de arquivos
+        run: |
+          HTML_COUNT=$(find . -type f -name "*.html" | wc -l)
+          CSS_COUNT=$(find . -type f -name "*.css" | wc -l)
+          JS_COUNT=$(find . -type f -name "*.js" | wc -l)
+          echo "HTML: $HTML_COUNT, CSS: $CSS_COUNT, JS: $JS_COUNT"

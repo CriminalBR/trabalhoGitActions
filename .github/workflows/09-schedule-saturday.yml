@@ -1,0 +1,11 @@
+name: 09 - Agendado para Sábado
+on:
+  schedule:
+    # Roda todo Sábado às 15:00 (UTC)
+    - cron: '0 15 * * 6'
+jobs:
+  saturday-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Tarefa de Sábado
+        run: echo "Esta tarefa está rodando no Sábado, conforme agendado."

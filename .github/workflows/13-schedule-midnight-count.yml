@@ -1,0 +1,15 @@
+name: 13 - Agendado para Contar Arquivos
+on:
+  schedule:
+    # Roda todo dia à meia-noite (UTC)
+    - cron: '0 0 * * *'
+jobs:
+  nightly-file-count:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+      - name: Contar todos os arquivos à meia-noite
+        run: |
+          COUNT=$(find . -type f | wc -l)
+          echo "Contagem da meia-noite: Existem $COUNT arquivos no projeto."

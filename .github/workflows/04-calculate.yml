@@ -1,0 +1,10 @@
+name: 04 - Calcular com Variável
+on: push
+jobs:
+  calculate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Calcular 2+2 com variável
+        run: |
+          RESULTADO=$((2+2))
+          echo "O resultado de 2+2 é $RESULTADO"
